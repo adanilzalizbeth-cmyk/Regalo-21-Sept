@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title id="title">Hola Mundo</title>
+</head>
+<body>
+  <!--  <img src="Img/FDP.jpg" alt="" class="fondo">-->
+    <h1 class="texto">Feliz 21 de Sept!!</h1>
+<div id="display" style="margin-top: 15px; font-size: 20px;letter-spacing: 4px;"></div>
+
+    <div class="mensaje" id="texto-inicial">
+       <p> Si hay vida  </p>
+      <p>  después de esta,</p>
+       <p> espero tener la suerte </p>
+      <p>  de coincidir contigo </p>
+       <p> en cada una de ellas </p>
+   
+</div>
+    <button id="btnMostrar" class="boton">Clic</button>
+
+   
+   <!--la class de esta etiqueta debo quitarla--> <div class="cont" id="oculto">
+    
+       <li class="cubo" data-num="1" >1</li>
+        <li class="cubo " data-num="2" >2</li>
+        <li class="cubo " data-num="3">3</li>
+        <li class="cubo " data-num="4">4</li>
+        <li class="cubo" data-num="5">5</li>
+        <li class="cubo" data-num="6">6</li>
+        <li class="cubo" data-num="7">7</li>
+        <li class="cubo" data-num="8">8</li>
+        <li class="cubo" data-num="9">9</li>
+         <li class="cubo" data-num="*">*</li>
+        <li class="cubo" data-num="0">0</li>
+         <li class="cubo" data-num="#">#</li>
+
+          <div class="mensajeError" style="display: none;" > 
+            <p>Esa no es, asi dices quererme </p>
+            <button id="btnAceptar">Aceptar</button>
+          </div>
+          <!--<p>Esa no es, y asi dices quererme</p>
+          <button id="btnAceptar">btnAceptar</button>-->
+      
+      
+         </div>
+          <div class="mensajeFelicitaciones" style="display: none;">
+        <p> Felicidades, preparate para tu sorpresa!!</p>
+        <button id="btnAceptarFelicitaciones">Aceptar</button>
+       </div>
+         <!--Mostrar la clave ingresada-->
+        
+       <div id="contenidoBloqueado" style="display: none; text-align: center; margin-top: 20px;">
+        <h2 id="jeje">Aun no hemos acabado</h2>
+        <p id="wiwi">Selecciona Una</p>
+
+        <div id="cartas-y-texto">
+        <ul class="puertas">
+
+
+          <li class="Carta-contenedor">
+        <div class="Carta">
+          <div class="Carta-inner">
+          <div class="frente">
+            <img src="hortensias.jpg" alt="Frente">
+            <span class="frente-s">Puerta 1</span>
+          </div>
+          <div  class="dorso">
+            <img src="girasoles.jpg" alt="Sorpresa 1">
+             
+          </div>
+          </div>
+          </div>
+             <span class="texto-dorso">Con este regalo, celebro los momentos especiales</span>
+          </li>
+
+          <li class="Carta-contenedor">
+        <div class="Carta">
+          <div class="Carta-inner">
+        <div class="frente"><img src="hortensias.jpg" alt="Frente">
+        <span class="frente-s">Puerta 2</span>
+        </div>
+        <div class="dorso">
+          <img src="ramo,elegangte.jpg" alt="Sorpresa 2">
+        
+      </div>
+        </div> 
+      </div>
+      <span class="texto-dorso">Y las pequeñas alegrías</span>
+      </li>
+
+
+      <li class="Carta-contenedor">
+        <div class="Carta">
+          <div class="Carta-inner">
+          <div class="frente">
+            <img src="hortensias.jpg" alt="Frente">
+            <span class="frente-s">Puerta 3</span>
+          </div>
+          <div class="dorso">
+            <img src="margaritas-rosas.jpg" alt="Sorpresa 3">
+             
+          </div>
+          </div>
+        </div>
+         <span class="texto-dorso">Que compratimos en el pasado y las que nos faltan</span>
+        </li>
+        </ul>
+</div>
+
+<button id="btnContinuar" style="display: none;">Continuar</button>
+
+        <div id="SegundaVentana" style="display: none; margin-top: 20px; color: white;">
+          <h2 id="Titulo-poema">No soy Mario Benedetti, pero:</h2>
+          <br>
+          <p id="poema">
+            Tres ciclos juntas caminamos, <br>
+            Risas, secretos y sueños guardamos. <br>
+            Entre libros y charlas, recuerdos creamos, <br>
+            Y en cada instante, juntas nos encontramos. <br>
+
+            Hoy 21 de Septiembre, te celebro, amiga, <br>
+            La primavera llega, y contigo la alegría sigue viva. <br>
+            Gracias por cada momento, por cada día, <br>
+            Por ser cómplica de mi historia y mi risa. <br>
+
+            Se que hemos tenido muchos altercados, <br>
+            Pero , gracias por estar cada inicio de primavera a mi lado. <br>
+            Te Quiero Mucho!!! <br>
+          </p>
+         <p id="autor">De mi y Chapi!!</p>
+        </div>
+        
+          <script src="script.js"></script>
+</body>
+</html>

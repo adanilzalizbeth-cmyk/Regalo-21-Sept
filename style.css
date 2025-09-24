@@ -1,0 +1,482 @@
+*
+body {
+    margin: 0;
+    min-height: 100vh;/*ocupar toda la altura de la pantalla*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    /* fondo*/
+
+    background-image: url(fondot.jpg);
+    background-size: cover; /*ajusta la imagen para cubrir toda la pantalla*/
+    background-position: center;/* centra la imagen*/
+    background-repeat: no-repeat; /* no repetir la imagen */
+  
+    
+}
+#title{
+    size: 5px;
+   
+  
+}
+.texto{
+
+    position: fixed; /* lo fija en la pantalla*/
+    top: 20px; /* distancia desde arriba*/
+    left: auto; /* centrado horizontal*/
+    transform: translateY(-50%);
+     font-size: 30px;
+     color: white;
+     z-index: 1000; /* encima de todo */
+  font-style: italic;
+ 
+  margin-bottom: 20px;
+  text-align: center;
+ 
+
+}
+
+.cont{
+
+    border-radius: 2px;
+    border: 2px solid black;
+    padding: 10px;
+    /*margin-left: 75px;
+    margin-right: 70px;*/
+    display:grid;
+    /*gap: 5px;*/
+    grid-template-columns: repeat(3,1fr); /*3 columnas iguales*/
+    column-gap: 10px;
+    row-gap: 10px;
+}
+ 
+#oculto{
+    display: none;
+    position: relative;
+    width: fit-content;
+    margin: auto;
+}
+
+.mensaje{
+    text-align: center;
+    font-size: 30px;
+    margin: 10px;
+    font-weight: bold;
+    line-height: 1px;
+    color: white;
+}
+
+.cubo{
+    border-radius: 2px ;
+    border: 2px solid black;
+    padding: 17px;
+    box-sizing: border-box;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;/* se ve que es clickeable*/
+    background-color:  transparent;
+    transition: 0.2s;/* para animacion al presionar*/
+}
+.cubo:active{
+    background-color: #f8b936;
+}
+
+.boton{
+    background: none;
+    border: 1px solid;
+    border-radius: 2px;
+    
+}
+
+.boton:hover{
+    background-color: #f8b936;
+}
+
+#display{
+
+    position: fixed;
+    top: 70px;
+    left: 45%;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 8px;
+    /*margin-top: 120px;
+    text-align: center;
+    font-size: 28px;
+    letter-spacing: 8px;
+    min-height: 30px;
+    font-weight: bold;*/
+}
+
+.puertas{
+    display: flex;
+    justify-content: center; /*centra las cartas horizontalmente*/
+    gap: 20px; /* espacio entre cartas*/
+    list-style: none; /*quitar los bullets*/
+    padding: 0;
+    margin-top: 30px; 
+}
+
+.Carta {
+    width: 100px;
+    height: 150px;
+    perspective: 1000px; /* para el efecto 3D*/
+    position: relative; /*importante*/
+}
+
+.Carta-inner{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.Carta.girada .Carta-inner {
+    transform: rotateY(180deg);
+
+}
+
+.frente, .dorso{
+    position: absolute;
+    width: 100%;
+    height:100%;
+    backface-visibility: hidden;
+    border-radius: 12px;
+}
+
+
+
+.frente{
+
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 18px;
+    color: white;
+}
+
+
+.dorso{
+    position: relative;
+    width: 100%;
+    height: 100% ;
+    border-radius: 12px;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);/*al girar, muestra el dorso*/
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+}
+
+.dorso img , .frente img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.frente img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    background-image: cover;
+}
+
+.frente-s{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    z-index: 10;
+    
+}
+
+/* el texto debajo de la carta(pero en la misma caja)*/
+.texto-dorso{
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+   
+   position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 8px;
+  box-sizing: border-box;
+  border-radius: 12px;
+
+  background: rgba(0,0,0,0.2); /* opaco para legibilidad (puedes quitar) */
+  color: #fff;
+  font-weight: bold;
+  z-index: 5;                /* > que .Carta-inner para quedar encima */
+  opacity: 0;
+  visibility: hidden;
+
+  /* el texto aparece *después* de la rotación: delay igual al tiempo de la rotación */
+  transition: opacity 0.18s ease 0.2s, visibility 0s linear 0.1s;
+}
+.Carta-contenedor{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.Carta.girada + .texto-dorso{
+    opacity: 1;
+    visibility: visible;
+}
+.mensajeError{
+    display: none; /* oculto al inicio*/
+    position: absolute; /* flota sobre el cuadro*/
+    top: 95px; /* distancia desde arriba*/
+    left: 95px;
+    width: 101%;
+    transform: translateX(-50%);/*centrar horizontalmente*/
+    /* right: 20px; distancia desde la derecha*/
+    background-color:  #fceb53;  /*gris oscuro estilo iOS*/
+    color: #2c2c2c; /* texto blanco*/
+   /* padding: 8px 12px; espacio interno*/
+    border-radius: 7px;
+    text-align: center;
+    font-size: 16px;
+    font-weight:  bold;/* texto destacado*/
+     z-index: 100; /*para que quede encima de todo*/
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) /* sombra para flotar*/; 
+    overflow: hidden;
+   /* white-space: nowrap;*/
+   
+}
+
+.mensajeError p {
+    margin: 0;
+    padding: 5px;
+    border-bottom: 2px solid black;
+}
+
+.mensajeError button{
+    width: 100%;
+    /*margin-top: 15px;*/
+    padding: 6px 0px;
+    border: none;
+    border-radius: 10px;
+    background-color: transparent;
+    color: #2c2c2c;
+    font-size: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    
+}
+
+.mensajeError button:hover{
+    background-color: #f8b936;
+    color: #fceb53;
+}
+
+.mensajeFelicitaciones{
+
+    display: none; /* oculto al inicio*/
+    position: absolute; /* flota sobre el cuadro*/
+    top: 280px; /* distancia desde arriba*/
+    left: 180px;
+    width: 50%;
+    transform: translateX(-50%);/*centrar horizontalmente*/
+    /* right: 20px; distancia desde la derecha*/
+    background-color:  #fceb53;  /*gris oscuro estilo iOS*/
+    color: #2c2c2c; /* texto blanco*/
+    /* padding: 8px 12px; espacio interno*/
+    border-radius: 7px;
+    text-align: center;
+    font-size: 16px;
+    font-weight:  bold;/* texto destacado*/
+    z-index: 100; /*para que quede encima de todo*/
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) /* sombra para flotar*/; 
+    overflow: hidden;
+    /* white-space: nowrap;*/
+
+
+  
+}
+
+.mensajeFelicitaciones p {
+     margin: 0;
+    padding: 5px;
+    border-bottom: 2px solid black;
+   /* margin-bottom: 1px;*/
+}
+
+.mensajeFelicitaciones button {
+   width: 100%;
+    /*margin-top: 15px;*/
+    padding: 6px 0px;
+    border: none;
+    border-radius: 10px;
+    background-color: transparent;
+    color: #2c2c2c;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+
+}
+
+.mensajeFelicitaciones button:hover{
+    background-color: #f8b936;
+    color: #fceb53;
+}
+
+#jeje{
+    color:white;
+    margin-top: -200px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#wiwi{
+    color: white;
+    font-size: 16px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#btnContinuar{
+  position: fixed;
+  right: 20px;
+  bottom: 20px; 
+  padding: 10px 20px;
+  background-color:  transparent;
+  border: 1px solid black;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+  display: none;           /* empieza oculto */
+  z-index: 2000;
+   background: rgba(0,0,0,0.2);
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#btnContinuar:hover{
+    transform: scale(1.05);
+    background-color: #f8b936;
+}
+#Titulo-poema{
+    margin-left: -160px;
+    margin-bottom: 8px;
+    margin-top:-100px;
+    font-size: 15px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background: rgba(0,0,0,0.2); /* opaco para legibilidad (puedes quitar) */
+}
+#poema{
+    margin-top: 10px;
+    line-height: 1.3;
+    font-size: 18px;
+   text-align: left;
+   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+   background: rgba(0,0,0,0.2); /* opaco para legibilidad (puedes quitar) */
+}
+#autor{
+    margin-left: 225px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background: rgba(0,0,0,0.2); /* opaco para legibilidad (puedes quitar) */
+}
+
+/*.Carta.girada .frente{
+    transform: rotateY(180deg);
+}
+
+.Carta.girada .dorso{
+    transform: rotateY(0);
+}
+/*.Carta div{
+    width: 100px;
+    height: 150px;
+    background-color: #fff; /*fondo blanco*/
+   /* border-radius: 12px; /*esquinas redondeadas*/
+ /*   box-shadow: 0 4px 8px rgba (0,0,0,0.3); /*sombra para efecto 3D*/
+  /*  display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}*/
+
+/*.Carta:hover{
+    transform: translateY(-10px); /* efecto al pasar mouse*/
+    /*box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+}*/
+
+
+
+/*.mensajeError button{
+    background: none;
+    border: none;
+    color: #007aff; /* azul tipico de ios*/
+ /*   font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 5px 0;
+    width: 100%;
+    border-top: 1px solid #444;/*linea separadora arriba*/
+/*}*/
+
+/*.mensajeError button:hover{
+    background-color: rgba(255,25);
+}
+
+#btnAceptar{
+    background: none;
+    border: 1px solid;
+    border-radius: 2px;
+    margin-top: 100px;
+}
+
+/*.mensajeFelicitaciones{
+    display: none;                 /* oculto al inicio */
+  /*  position: absolute;            
+    top: -50px;                     
+    left: 20px;                    /* se muestra en la esquina opuesta al error */
+  /*  background-color: #4CAF50;     /* verde */
+   /* color: white;                  
+    padding: 10px 15px;            
+    border-radius: 8px;            
+    font-weight: bold;             
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
+    z-index: 100;        
+    transform: translateX(-50%);  
+}
+/*boton{
+    color: black;
+    background: transparent;
+    border: 2px solid black;
+    border-radius: 2px;
+    cursor: pointer;
+    
+}
+
+/*#uno{
+   grid-column: 1/ 3;}
+*/
